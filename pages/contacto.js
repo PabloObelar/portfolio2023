@@ -1,26 +1,63 @@
 import Layout from "../components/Layout";
-import Formulario from "./formulario";
-import emailjs from "@emailjs/browser";
+
+import { useRef } from "react";
 
 const contacto = () => {
-  const sendEmail = (events) => {
-    events.preventDefault();
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
 
     emailjs
       .sendForm(
         "service_uh6kp5d",
         "template_qevz07j",
-        events.target,
+        form.current,
         "muy5CcfUmuGumCpmY"
       )
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    e.target.reset();
   };
 
   return (
-    <Layout title="Contactos" footer={false} light>
-      <Formulario />
-    </Layout>
+    <>
+      <Layout title="Contactos" footer={false} light>
+        <contacto />
+
+        <section>
+          <div className="formulario">
+            <form
+              ref={form}
+              onSubmit={sendEmail}
+              className="--form-control--card"
+            >
+              <input
+                type="text"
+                placeholder="Nombre..."
+                name="user_name"
+                required
+              />
+              <input
+                type="email"
+                placeholder="Email..."
+                name="user_email"
+                required
+              />
+
+              <textarea name="user_message" cols="30" rows="10"></textarea>
+              <button type="submit">Enviar</button>
+            </form>
+          </div>
+        </section>
+      </Layout>
+    </>
   );
 };
 

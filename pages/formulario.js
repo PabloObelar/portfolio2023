@@ -1,7 +1,29 @@
 import { Formik, Field, ErrorMessage } from "formik";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Formulario = () => {
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_uh6kp5d",
+        "template_qevz07j",
+        Formik.current,
+        "muy5CcfUmuGumCpmY"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    e.target.reset();
+  };
+
   const [formulario, setFormulario] = useState(false);
   return (
     <>
@@ -103,7 +125,7 @@ const Formulario = () => {
           errors,
           touched,
         }) => (
-          <form className="formulario" onSubmit={handleSubmit}>
+          <form className="formulario" onSubmit={sendEmail}>
             {console.log(errors)}
             <div>
               <label htmlFor="nombre">Nombre</label>
@@ -151,7 +173,7 @@ const Formulario = () => {
               />
             </div>
             <div>
-              <label htmlFor="corre">Email</label>
+              <label htmlFor="correo">Email</label>
               <input
                 type="text"
                 name="correo"
