@@ -1,5 +1,4 @@
 import "bootswatch/dist/cosmo/bootstrap.min.css";
-
 import "nprogress/nprogress.css";
 import "../style.css";
 

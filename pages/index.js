@@ -2,7 +2,6 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 import { skills, experiences, projects } from "../profile";
 
-console.log(experiences);
 const Index = () => (
   <Layout>
     {/**Header card */}

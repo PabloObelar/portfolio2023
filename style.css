@@ -6,6 +6,11 @@ div#__next > div {
   height: 105%;
 }
 
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .overflow {
   height: 50%;
   overflow: hidden;

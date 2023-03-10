@@ -50,7 +50,7 @@ const contacto = () => {
                 name="user_email"
                 required
               />
-
+              <h4 className="text-center">Comentario</h4>
               <textarea name="user_message" cols="30" rows="10"></textarea>
               <button type="submit">Enviar</button>
             </form>
